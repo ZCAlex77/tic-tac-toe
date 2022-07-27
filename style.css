@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+html{
+  font-family: 'Roboto', sans-serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #222;
+}
+
+:where(header, main){
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header{
+  height: 10%;
+  background-color: #444;
+  color: #fff;
+  justify-content: flex-start;
+  padding-left: 24px;
+}
+
+main{
+  height: 90%;
+}
+
+.game{
+  background: #111;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 10px;
+  width: 400px;
+  height: 400px;
+}
+
+.cell{
+  background: #666;
+  cursor: pointer;
+}
