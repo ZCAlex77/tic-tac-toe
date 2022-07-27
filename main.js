@@ -3,6 +3,7 @@ const cells = document.querySelectorAll(".cell");
 const displayController = (function () {
   const changeTile = (tile, symbol) => {
     cells[tile].textContent = symbol;
+    cells[tile].style.color = "#111";
   };
 
   const displayWinner = (winner) => {
@@ -28,6 +29,7 @@ const game = (function () {
   ];
   const gameBoard = [null, null, null, null, null, null, null, null, null];
   let emptyCells = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  let isOver = false;
 
   const getEmptyCells = () => [...emptyCells];
 
@@ -35,14 +37,26 @@ const game = (function () {
     for (condition of winConditions) {
       if (
         gameBoard[condition[0]] === gameBoard[condition[1]] &&
-        gameBoard[condition[1]] === gameBoard[condition[2]]
-      )
+        gameBoard[condition[1]] === gameBoard[condition[2]] &&
+        gameBoard[condition[0]] !== null
+      ) {
+        displayController.displayWinner(gameBoard[condition[0]]);
+        isOver = true;
         return true;
+      }
     }
+
+    if (!emptyCells.length) {
+      displayController.displayWinner("Tie");
+      isOver = true;
+      return true;
+    }
+
+    return false;
   };
 
   const changeTile = (index, player) => {
-    if (!gameBoard[index]) {
+    if (!gameBoard[index] && !isOver) {
       gameBoard[index] = player;
       emptyCells = emptyCells.filter((cell) => !gameBoard[cell]);
       displayController.changeTile(index, player);
@@ -77,8 +91,10 @@ cells.forEach(
       if (
         game.changeTile(Number(this.getAttribute("data-index")), player.weapon)
       ) {
-        if (game.getEmptyCells().length)
+        if (game.getEmptyCells().length && !game.checkWinner()) {
           game.changeTile(opponent.play(), opponent.weapon);
+        }
+        game.checkWinner();
       }
     })
 );
