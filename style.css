@@ -17,7 +17,7 @@ body{
   background-color: #222;
 }
 
-:where(header, main){
+:where(header, main, .cell){
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,6 +45,8 @@ main{
 }
 
 .cell{
-  background: #666;
+  background: #aaa;
   cursor: pointer;
+  font-size: 100px;
+  color: #111;
 }
