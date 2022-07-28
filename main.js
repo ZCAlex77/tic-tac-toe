@@ -1,6 +1,13 @@
 const cells = document.querySelectorAll(".cell");
 
 const displayController = (function () {
+  const resetBoard = () => {
+    cells.forEach((cell) => {
+      cell.textContent = "";
+      cell.style.color = "#aaa";
+    });
+  };
+
   const changeTile = (tile, symbol) => {
     cells[tile].textContent = symbol;
     cells[tile].style.color = "#111";
@@ -11,6 +18,7 @@ const displayController = (function () {
   };
 
   return {
+    resetBoard,
     changeTile,
     displayWinner,
   };
@@ -27,11 +35,18 @@ const game = (function () {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  const gameBoard = [null, null, null, null, null, null, null, null, null];
+  let gameBoard = [null, null, null, null, null, null, null, null, null];
   let emptyCells = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   let isOver = false;
 
   const getEmptyCells = () => [...emptyCells];
+
+  const restart = () => {
+    gameBoard = gameBoard.map((el) => null);
+    emptyCells = gameBoard.map((el, i) => i);
+    displayController.resetBoard();
+    isOver = false;
+  };
 
   const checkWinner = () => {
     for (condition of winConditions) {
@@ -67,6 +82,7 @@ const game = (function () {
   };
 
   return {
+    restart,
     getEmptyCells,
     checkWinner,
     changeTile,
@@ -98,3 +114,5 @@ cells.forEach(
       }
     })
 );
+
+document.querySelector("#restart").onclick = () => game.restart();

@@ -1,29 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-html{
-  font-family: 'Roboto', sans-serif;
+html {
+  font-family: "Roboto", sans-serif;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: inherit;
 }
 
-body{
+body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   background-color: #222;
 }
 
-:where(header, main, .cell){
+:where(header, main, .cell) {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-header{
+header {
   height: 10%;
   background-color: #444;
   color: #fff;
@@ -31,23 +31,44 @@ header{
   padding-left: 24px;
 }
 
-main{
+main {
   height: 90%;
 }
 
-.game{
+.game {
   background: #111;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   gap: 10px;
   width: 400px;
   height: 400px;
+  position: relative;
 }
 
-.cell{
+.cell {
   background: #aaa;
   cursor: pointer;
   font-size: 100px;
   color: #aaa;
-  transition: color .5s;
+  transition: color 0.5s;
+}
+
+#restart {
+  background-color: #aaa;
+  color: #111;
+  font-size: 2rem;
+  padding: 10px 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 0;
+  box-shadow: 2px 2px 10px #000;
+  position: absolute;
+  left: 50%;
+  bottom: calc(-2rem - 40px);
+  transform: translateX(-50%);
+}
+
+#restart:hover {
+  background: #fff;
+  color: #111;
 }
