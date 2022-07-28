@@ -1,6 +1,8 @@
 const cells = document.querySelectorAll(".cell");
 
 const displayController = (function () {
+  const winDisplay = document.querySelectorAll(".win-display");
+
   const resetBoard = () => {
     cells.forEach((cell) => {
       cell.textContent = "";
@@ -14,11 +16,25 @@ const displayController = (function () {
   };
 
   const displayWinner = (winner) => {
-    console.log(winner);
+    winDisplay.forEach((dis) => {
+      dis.textContent = winner
+        ? `${winner.toUpperCase()} WINS!`
+        : "IT'S A TIE!";
+      dis.style.transform = "translateY(0)";
+      dis.style.opacity = "1";
+    });
+  };
+
+  const resetWinnerDisplay = () => {
+    winDisplay.forEach((dis) => {
+      dis.style.transform = "translateY(-100%)";
+      dis.style.opacity = "0";
+    });
   };
 
   return {
     resetBoard,
+    resetWinnerDisplay,
     changeTile,
     displayWinner,
   };
@@ -45,6 +61,7 @@ const game = (function () {
     gameBoard = gameBoard.map((el) => null);
     emptyCells = gameBoard.map((el, i) => i);
     displayController.resetBoard();
+    displayController.resetWinnerDisplay();
     isOver = false;
   };
 
@@ -55,14 +72,18 @@ const game = (function () {
         gameBoard[condition[1]] === gameBoard[condition[2]] &&
         gameBoard[condition[0]] !== null
       ) {
-        displayController.displayWinner(gameBoard[condition[0]]);
+        displayController.displayWinner(
+          gameBoard[condition[0]] === player.weapon
+            ? player.name
+            : opponent.name
+        );
         isOver = true;
         return true;
       }
     }
 
     if (!emptyCells.length) {
-      displayController.displayWinner("Tie");
+      displayController.displayWinner(null);
       isOver = true;
       return true;
     }

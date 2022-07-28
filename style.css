@@ -17,7 +17,7 @@ body {
   background-color: #222;
 }
 
-:where(header, main, .cell) {
+:where(header, .cell, .win-container) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,6 +33,28 @@ header {
 
 main {
   height: 90%;
+  display: grid;
+  grid-template-columns: 1fr 400px 1fr;
+}
+
+main > div {
+  align-self: center;
+}
+
+.win-container {
+  height: 8.5rem;
+  color: #fff;
+  font-size: 4rem;
+  font-weight: bold;
+  overflow-y: hidden;
+  position: relative;
+}
+
+.win-display {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  text-align: center;
 }
 
 .game {
@@ -54,8 +76,8 @@ main {
 }
 
 #restart {
-  background-color: #aaa;
-  color: #111;
+  background-color: #111;
+  color: #aaa;
   font-size: 2rem;
   padding: 10px 50px;
   border-radius: 10px;
@@ -69,6 +91,6 @@ main {
 }
 
 #restart:hover {
-  background: #fff;
+  background: #aaa;
   color: #111;
 }
