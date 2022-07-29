@@ -136,6 +136,8 @@ cells.forEach(
     })
 );
 
+document.querySelector("#restart").onclick = () => game.restart();
+
 const weaponChoices = document.querySelectorAll(".wp-choice");
 weaponChoices.forEach((btn) => {
   btn.onclick = function () {
@@ -148,3 +150,12 @@ weaponChoices.forEach((btn) => {
     }
   };
 });
+
+const nameInput = document.querySelector("#name");
+
+document.querySelector("#changeName").onclick = () => {
+  let newName = nameInput.value;
+  player.name = newName;
+  nameInput.placeholder = `Current name: ${newName}`;
+  nameInput.value = "";
+};

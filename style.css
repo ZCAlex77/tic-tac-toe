@@ -17,7 +17,7 @@ body {
   background-color: #222;
 }
 
-:where(header, .cell, .win-container) {
+:where(header, .cell, .win-container, .options) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,6 +36,15 @@ header {
   padding: 0 24px;
 }
 
+header > h1 > span{
+  font-size: 0.9rem;
+}
+
+.options > div:first-child{
+  border-right: 1px solid #fff;
+  padding: 0 10px;
+}
+
 :where(.wp-choice) {
   background-color: #111;
   color: #fff;
@@ -49,6 +58,23 @@ header {
   background-color: #fff;
   color: #111;
   cursor: default;
+}
+
+#name, #changeName{
+  height: 35px;
+  font-size: 1rem;
+  padding: 0 10px;
+}
+
+#name{
+  margin-left: 10px;
+  color: #111;
+}
+
+#changeName{
+  background: #111;
+  color: #fff;
+  border: 0;
 }
 
 main {

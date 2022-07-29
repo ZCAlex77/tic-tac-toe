@@ -12,11 +12,15 @@
 
 <body>
   <header>
-    <h1>Tic Tac Toe</h1>
+    <h1>Tic Tac Toe <span>by Alexandru Zmău</span></h1>
     <div class="options">
       <div>
         <button class="wp-choice" data-wp="x" disabled>X</button>
         <button class="wp-choice" data-wp="o">O</button>
+      </div>
+      <div>
+        <input type="text" id="name" minlength="1" maxlength="30" placeholder="Current name: Player">
+        <button id="changeName">Change name</button>
       </div>
     </div>
   </header>
