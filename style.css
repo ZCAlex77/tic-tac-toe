@@ -23,12 +23,32 @@ body {
   justify-content: center;
 }
 
+button,
+.cell {
+  cursor: pointer;
+}
+
 header {
   height: 10%;
   background-color: #444;
   color: #fff;
-  justify-content: flex-start;
-  padding-left: 24px;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+:where(.wp-choice) {
+  background-color: #111;
+  color: #fff;
+  padding: 10px 40px;
+  font-size: 1.2rem;
+  border: 0;
+  border-radius: 10px;
+}
+
+.wp-choice:disabled {
+  background-color: #fff;
+  color: #111;
+  cursor: default;
 }
 
 main {
@@ -69,7 +89,6 @@ main > div {
 
 .cell {
   background: #aaa;
-  cursor: pointer;
   font-size: 100px;
   color: #aaa;
   transition: color 0.5s;
@@ -81,7 +100,6 @@ main > div {
   font-size: 2rem;
   padding: 10px 50px;
   border-radius: 10px;
-  cursor: pointer;
   border: 0;
   box-shadow: 2px 2px 10px #000;
   position: absolute;

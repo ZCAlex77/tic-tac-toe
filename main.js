@@ -136,4 +136,15 @@ cells.forEach(
     })
 );
 
-document.querySelector("#restart").onclick = () => game.restart();
+const weaponChoices = document.querySelectorAll(".wp-choice");
+weaponChoices.forEach((btn) => {
+  btn.onclick = function () {
+    let wp = btn.getAttribute("data-wp");
+    if (player.weapon !== wp) {
+      opponent.weapon = player.weapon;
+      player.weapon = wp;
+      weaponChoices.forEach((b) => (b.disabled = !b.disabled));
+      game.restart();
+    }
+  };
+});
